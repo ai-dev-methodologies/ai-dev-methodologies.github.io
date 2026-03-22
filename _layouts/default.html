@@ -3,6 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="{{ page.author | default: site.author | default: 'kyjin' }}">
+    {% assign meta_description = page.description | default: site.description %}
+    {% if meta_description %}
+    <meta name="description" content="{{ meta_description | escape }}">
+    {% endif %}
+    {% if page.tags %}
+    <meta name="keywords" content="{{ page.tags | join: ', ' | escape }}">
+    {% endif %}
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    {% if page.layout == 'post' %}
+    <meta property="og:type" content="article">
+    {% for tag in page.tags %}
+    <meta property="article:tag" content="{{ tag | escape }}">
+    {% endfor %}
+    {% else %}
+    <meta property="og:type" content="website">
+    {% endif %}
+    <meta property="og:locale" content="ko_KR">
     {% seo %}
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
   </head>
