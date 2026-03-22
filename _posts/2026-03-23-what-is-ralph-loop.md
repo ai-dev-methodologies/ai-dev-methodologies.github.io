@@ -3,6 +3,10 @@ layout: post
 title: "Ralph Loop란 무엇인가"
 description: "긴 세션이 왜 망가지고, Ralph Loop가 왜 반복보다 fresh context를 핵심으로 보는지 설명한다."
 permalink: /blog/what-is-ralph-loop/
+series: "Ralph Loop"
+series_slug: "ralph-loop"
+series_order: 1
+featured_series: true
 tags:
   - ralph-loop
   - fresh-context

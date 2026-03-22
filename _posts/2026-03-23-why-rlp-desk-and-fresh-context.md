@@ -3,6 +3,10 @@ layout: post
 title: "왜 rlp-desk인가 / fresh context의 장점"
 description: "왜 fresh context가 긴 작업에서 중요한지, 그리고 왜 Ralph 개념을 구현 자산인 rlp-desk로 옮겨야 했는지 설명한다."
 permalink: /blog/why-rlp-desk-and-fresh-context/
+series: "rlp-desk"
+series_slug: "rlp-desk"
+series_order: 4
+featured_series: true
 tags:
   - rlp-desk
   - fresh-context

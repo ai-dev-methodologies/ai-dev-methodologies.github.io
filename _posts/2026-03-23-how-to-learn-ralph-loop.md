@@ -3,6 +3,10 @@ layout: post
 title: "Ralph Loop 학습 가이드"
 description: "Ralph Loop를 개념, fresh context, filesystem memory, verification, implementation proof 순서로 배워야 하는 이유를 정리한다."
 permalink: /blog/how-to-learn-ralph-loop/
+series: "Ralph Loop"
+series_slug: "ralph-loop"
+series_order: 2
+featured_series: true
 tags:
   - ralph-loop
   - fresh-context

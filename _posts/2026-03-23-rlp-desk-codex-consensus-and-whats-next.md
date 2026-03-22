@@ -3,6 +3,10 @@ layout: post
 title: "rlp-desk 심화: Codex, consensus verify, 그리고 다음 단계"
 description: "rlp-desk에 들어간 Codex 지원, per-US verify, consensus verify, self-verification의 의미와 다음 시리즈 방향을 정리한다."
 permalink: /blog/rlp-desk-codex-consensus-and-whats-next/
+series: "rlp-desk"
+series_slug: "rlp-desk"
+series_order: 5
+featured_series: true
 tags:
   - rlp-desk
   - codex

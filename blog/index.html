@@ -6,14 +6,14 @@ description: Ralph Loop, rlp-desk, workflow methodology, and verification planni
 
 <section class="page-hero">
   <p class="eyebrow">BLOG</p>
-  <h1>시리즈를 흐름대로 읽을 수 있게 정리했다</h1>
+  <h1>주제와 시리즈 단위로 계속 확장되는 블로그 허브</h1>
   <p class="hero-copy">
-    Ralph Loop 개념에서 시작해, `rlp-desk` 구현과 앞으로의 workflow / verification methodology까지 이어진다.
+    지금은 Ralph Loop와 `rlp-desk`가 먼저 올라와 있지만, 이후 더 많은 주제와 시리즈가 계속 추가될 수 있게 구성한다.
   </p>
 </section>
 
 <section class="series-card">
-  <p class="resource-title">읽기 순서</p>
+  <p class="resource-title">대표 시리즈 읽기 순서</p>
   <ol class="series-list">
     <li><span class="series-step">1</span> <a href="/blog/what-is-ralph-loop/">Ralph Loop란 무엇인가</a></li>
     <li><span class="series-step">2</span> <a href="/blog/how-to-learn-ralph-loop/">Ralph Loop 학습 가이드</a></li>
@@ -23,85 +23,28 @@ description: Ralph Loop, rlp-desk, workflow methodology, and verification planni
   </ol>
 </section>
 
-<section class="ordered-sequence">
-  <article class="post-card">
-    <span class="series-step">1</span>
-    <a class="post-card-title" href="/blog/what-is-ralph-loop/">Ralph Loop란 무엇인가</a>
-    <p>긴 세션이 왜 무너지고, Ralph Loop가 왜 반복보다 fresh context를 핵심으로 보는지 설명하는 시작 글.</p>
-  </article>
-  <article class="post-card">
-    <span class="series-step">2</span>
-    <a class="post-card-title" href="/blog/how-to-learn-ralph-loop/">Ralph Loop 학습 가이드</a>
-    <p>개념, fresh context, filesystem memory, verification, implementation proof를 어떤 순서로 이해해야 하는지 정리한 학습 글.</p>
-  </article>
-  <article class="post-card featured hub-card">
-    <span class="series-step hub">3</span>
-    <a class="post-card-title" href="/blog/how-rlp-desk-implements-fresh-context/">fresh context를 rlp-desk는 어떻게 구현하나</a>
-    <p>이 시리즈의 가운데 허브 글. `rlp-desk`를 실제 명령 흐름과 file contract, worker/verifier 분리 구조로 보여준다.</p>
-  </article>
-  <article class="post-card">
-    <span class="series-step">4</span>
-    <a class="post-card-title" href="/blog/why-rlp-desk-and-fresh-context/">왜 rlp-desk인가 / fresh context의 장점</a>
-    <p>왜 이 구현 자산을 만들었는지, 왜 fresh context를 이 방식으로 밀었는지 설명하는 브리지 글.</p>
-  </article>
-  <article class="post-card">
-    <span class="series-step">5</span>
-    <a class="post-card-title" href="/blog/rlp-desk-codex-consensus-and-whats-next/">rlp-desk 심화: Codex, consensus verify, 그리고 다음 단계</a>
-    <p>Codex 지원, per-US verify, consensus, self-verification과 그 이후의 workflow/verification methodology 시리즈로 이어지는 글.</p>
-  </article>
-</section>
-
+{% assign grouped_posts = site.posts | group_by: "series" %}
+{% for group in grouped_posts %}
 <section class="group-section">
   <div class="group-header">
-    <p class="eyebrow">SERIES 1</p>
-    <h2>Ralph Loop</h2>
-    <p class="hero-copy">긴 세션이 왜 무너지고, fresh context와 filesystem memory가 왜 중요한지를 먼저 잡는 섹션이다.</p>
+    <p class="eyebrow">SERIES</p>
+    <h2>{{ group.name }}</h2>
   </div>
   <ul class="post-list">
+    {% assign sorted_group = group.items | sort: "series_order" %}
+    {% for post in sorted_group %}
     <li>
-      <article class="post-card">
-        <span class="series-step">1</span>
-        <a class="post-card-title" href="/blog/what-is-ralph-loop/">Ralph Loop란 무엇인가</a>
-        <p>Ralph Loop를 밈이 아니라 운영 방식으로 읽기 위한 출발점.</p>
+      <article class="post-card{% if post.featured_series %} featured{% endif %}{% if post.series_order == 3 %} hub-card{% endif %}">
+        {% if post.series_order %}
+        <span class="series-step{% if post.series_order == 3 %} hub{% endif %}">{{ post.series_order }}</span>
+        {% endif %}
+        <a class="post-card-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        {% if post.description %}
+        <p>{{ post.description }}</p>
+        {% endif %}
       </article>
     </li>
-    <li>
-      <article class="post-card">
-        <span class="series-step">2</span>
-        <a class="post-card-title" href="/blog/how-to-learn-ralph-loop/">Ralph Loop 학습 가이드</a>
-        <p>개념에서 fresh context, filesystem memory, verification, implementation proof로 넘어가는 순서를 정리한 글.</p>
-      </article>
-    </li>
+    {% endfor %}
   </ul>
 </section>
-
-<section class="group-section">
-  <div class="group-header">
-    <p class="eyebrow">SERIES 2</p>
-    <h2>rlp-desk</h2>
-    <p class="hero-copy">Ralph Loop의 인사이트를 실제 실행 도구와 workflow 구조로 어떻게 내렸는지를 보여주는 섹션이다.</p>
-  </div>
-  <ul class="post-list">
-    <li>
-      <article class="post-card featured">
-        <span class="series-step hub">3</span>
-        <a class="post-card-title" href="/blog/how-rlp-desk-implements-fresh-context/">fresh context를 rlp-desk는 어떻게 구현하나</a>
-        <p>이 시리즈의 가운데 허브 글. 명령 흐름, file contract, worker/verifier 분리, per-US verify와 self-verification을 실제 구조로 보여준다.</p>
-      </article>
-    </li>
-    <li>
-      <article class="post-card">
-        <span class="series-step">4</span>
-        <a class="post-card-title" href="/blog/why-rlp-desk-and-fresh-context/">왜 rlp-desk인가 / fresh context의 장점</a>
-        <p>왜 이 구현 자산을 만들었는지, 왜 fresh context를 이 방식으로 밀었는지 설명하는 브리지 글.</p>
-      </article>
-    </li>
-    <li>
-      <article class="post-card">
-        <span class="series-step">5</span>
-        <a class="post-card-title" href="/blog/rlp-desk-codex-consensus-and-whats-next/">rlp-desk 심화: Codex, consensus verify, 그리고 다음 단계</a>
-        <p>Codex 지원, per-US verify, consensus, self-verification과 다음 workflow/verification methodology 시리즈를 연결하는 글.</p>
-      </article>
-    </li>
-  </ul>
-</section>
+{% endfor %}
