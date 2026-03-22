@@ -35,5 +35,19 @@
     <main class="content">
       {{ content }}
     </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentHost = window.location.host;
+        document.querySelectorAll("a[href]").forEach((link) => {
+          try {
+            const url = new URL(link.href, window.location.origin);
+            if (url.host && url.host !== currentHost) {
+              link.setAttribute("target", "_blank");
+              link.setAttribute("rel", "noopener noreferrer");
+            }
+          } catch (_) {}
+        });
+      });
+    </script>
   </body>
 </html>
