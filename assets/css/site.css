@@ -1,8 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #18181b;
+  --color-secondary: #3f3f46;
+  --color-cta: #ec4899;
+  --color-background: #fafafa;
+  --color-text: #09090b;
+  --color-surface: #fffdf7;
+  --color-border: #ddd6c8;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   margin: 0;
-  color: #111;
-  background: #faf9f5;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at top right, rgba(236, 72, 153, 0.08), transparent 30%),
+    linear-gradient(180deg, #fffdf8 0%, var(--color-background) 100%);
 }
 
 .site-header {
@@ -10,27 +24,140 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px 28px;
-  border-bottom: 1px solid #ddd6c8;
-  background: #fffdf7;
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(255, 253, 247, 0.92);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 .brand {
-  color: #111;
+  color: var(--color-primary);
   font-weight: 700;
   text-decoration: none;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: -0.03em;
 }
 
 nav a {
   margin-left: 16px;
-  color: #333;
+  color: var(--color-secondary);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .content {
   max-width: 760px;
   margin: 0 auto;
-  padding: 40px 20px 80px;
+  padding: 56px 20px 100px;
   line-height: 1.75;
+}
+
+h1, h2, h3, .eyebrow {
+  font-family: "JetBrains Mono", monospace;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  margin: 0 0 20px;
+}
+
+h2 {
+  margin-top: 48px;
+  line-height: 1.15;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-cta);
+}
+
+.accent {
+  color: var(--color-cta);
+}
+
+.hero,
+.page-hero {
+  padding: 12px 0 28px;
+}
+
+.hero-copy {
+  max-width: 680px;
+  font-size: 1.08rem;
+  color: var(--color-secondary);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 180ms ease, opacity 180ms ease, box-shadow 180ms ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(9, 9, 11, 0.12);
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.post-card:hover {
+  transform: translateY(-1px);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.feature-card,
+.post-card,
+.lede-box {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(221, 214, 200, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 12px 26px rgba(9, 9, 11, 0.04);
+}
+
+.feature-card {
+  padding: 20px;
+}
+
+.feature-label {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--color-cta);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .post-list {
@@ -39,8 +166,7 @@ nav a {
 }
 
 .post-list li {
-  padding: 18px 0;
-  border-bottom: 1px solid #e8e1d4;
+  padding: 0 0 18px;
 }
 
 .meta {
@@ -51,6 +177,17 @@ nav a {
 
 .post-header {
   margin-bottom: 24px;
+}
+
+.post-card {
+  padding: 22px;
+}
+
+.post-card-title {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 1.22rem;
+  font-weight: 700;
 }
 
 .tag-list {
@@ -69,4 +206,34 @@ nav a {
   font-size: 13px;
   color: #5f5748;
   background: #fff;
+}
+
+.tag-list.compact li {
+  font-size: 12px;
+  padding: 3px 8px;
+}
+
+.lede-box {
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+
+.lede-box p {
+  margin: 0;
+  color: var(--color-secondary);
+}
+
+.post-body a {
+  color: var(--color-primary);
+  text-decoration-thickness: 1.5px;
+}
+
+.post-body code {
+  font-family: "JetBrains Mono", monospace;
+}
+
+@media (max-width: 860px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
 }
