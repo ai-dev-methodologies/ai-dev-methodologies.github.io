@@ -47,6 +47,36 @@
             }
           } catch (_) {}
         });
+
+        document.querySelectorAll(".post-body pre").forEach((pre) => {
+          if (pre.dataset.enhanced === "true") return;
+          pre.dataset.enhanced = "true";
+
+          const wrapper = document.createElement("div");
+          wrapper.className = "code-shell";
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+
+          const button = document.createElement("button");
+          button.className = "copy-button";
+          button.type = "button";
+          button.setAttribute("aria-label", "Copy code");
+          button.textContent = "Copy";
+          wrapper.appendChild(button);
+
+          button.addEventListener("click", async () => {
+            try {
+              await navigator.clipboard.writeText(pre.innerText);
+              button.textContent = "Copied";
+            } catch (_) {
+              button.textContent = "Failed";
+            }
+
+            setTimeout(() => {
+              button.textContent = "Copy";
+            }, 1600);
+          });
+        });
       });
     </script>
   </body>
