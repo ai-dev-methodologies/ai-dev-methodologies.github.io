@@ -296,6 +296,40 @@ h2 {
   margin-top: 8px;
 }
 
+.diagram-card,
+.series-card {
+  margin: 28px 0;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(221, 214, 200, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 12px 26px rgba(9, 9, 11, 0.04);
+}
+
+.diagram-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid #e7dfd0;
+  background: #fff;
+}
+
+.diagram-card figcaption {
+  margin-top: 12px;
+  color: var(--color-secondary);
+  font-size: 14px;
+}
+
+.series-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.series-list li + li {
+  margin-top: 8px;
+}
+
 .post-body a {
   color: var(--color-primary);
   text-decoration-thickness: 1.5px;
