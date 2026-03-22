@@ -197,6 +197,35 @@ h2 {
   font-weight: 700;
 }
 
+.group-section {
+  margin-top: 36px;
+}
+
+.group-header {
+  margin-bottom: 18px;
+}
+
+.series-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #d7cfbf;
+  background: #fff;
+  color: #5f5748;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.post-card.featured {
+  border-color: rgba(236, 72, 153, 0.35);
+  box-shadow: 0 14px 32px rgba(236, 72, 153, 0.08);
+}
+
 .tag-list {
   list-style: none;
   padding: 0;
