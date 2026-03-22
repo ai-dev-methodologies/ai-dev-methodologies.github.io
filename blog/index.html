@@ -1,0 +1,20 @@
+---
+layout: default
+title: Blog
+description: Blog index
+---
+
+<h1>Blog</h1>
+
+<ul class="post-list">
+  {% assign ordered_posts = site.posts | sort: "date" | reverse %}
+  {% for post in ordered_posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <div class="meta">{{ post.date | date: "%Y-%m-%d" }}</div>
+      {% if post.description %}
+      <p>{{ post.description }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

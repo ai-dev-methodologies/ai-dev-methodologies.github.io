@@ -1,0 +1,20 @@
+title: ai-dev-methodologies
+description: AI development methodologies, Ralph Loop, and rlp-desk notes.
+url: "https://ai-dev-methodologies.github.io"
+baseurl: ""
+lang: ko
+timezone: Asia/Seoul
+markdown: kramdown
+permalink: /blog/:title/
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+collections: {}
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: kyjin
