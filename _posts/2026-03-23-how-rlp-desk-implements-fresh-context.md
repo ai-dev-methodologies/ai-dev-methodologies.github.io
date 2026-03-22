@@ -12,7 +12,7 @@ tags:
   - verification
 ---
 
-`fresh context가 중요하다`는 말만으로는 잘 안 와닿는다. 내가 만든 `rlp-desk`를 실제로 어떻게 쓰는지, 그리고 그 안에서 fresh context가 어떤 식으로 만들어지는지부터 보여주는 편이 훨씬 낫다.
+`fresh context가 중요하다`는 말만으로는 잘 안 와닿는다. 내가 만든 [`rlp-desk`](https://github.com/ai-dev-methodologies/rlp-desk)를 실제로 어떻게 쓰는지, 그리고 그 안에서 fresh context가 어떤 식으로 만들어지는지부터 보여주는 편이 훨씬 낫다.
 
 ## 먼저 사용 장면부터 보자
 
