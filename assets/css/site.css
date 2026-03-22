@@ -65,6 +65,10 @@ h1 {
   margin: 0 0 20px;
 }
 
+.post .post-header h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
 h2 {
   margin-top: 48px;
   line-height: 1.15;
@@ -140,7 +144,8 @@ h2 {
 
 .feature-card,
 .post-card,
-.lede-box {
+.lede-box,
+.start-card {
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(221, 214, 200, 0.9);
   border-radius: 18px;
@@ -221,6 +226,19 @@ h2 {
 .lede-box p {
   margin: 0;
   color: var(--color-secondary);
+}
+
+.start-card {
+  padding: 18px 20px;
+  margin: 24px 0 28px;
+}
+
+.start-card p {
+  margin: 0 0 12px;
+}
+
+.start-card p:last-child {
+  margin-bottom: 0;
 }
 
 .post-body a {

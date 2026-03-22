@@ -15,15 +15,21 @@ tags:
 
 `fresh context가 중요하다`는 말만으로는 잘 안 와닿는다. 내가 만든 [`rlp-desk`](https://github.com/ai-dev-methodologies/rlp-desk)를 실제로 어떻게 쓰는지, 그리고 그 안에서 fresh context가 어떤 식으로 만들어지는지부터 보여주는 편이 훨씬 낫다.
 
-## Start here
+## 왜 이 글을 먼저 봐야 하나
 
-- GitHub: `https://github.com/ai-dev-methodologies/rlp-desk`
-- Install:
+AI agent를 실무에 붙여 본 사람이라면 비슷한 순간을 한 번쯤 겪는다. 처음에는 그럴듯하게 잘 가다가, 세션이 길어질수록 방향이 흐려지고, 어느 순간엔 뭔가 많이 한 것 같은데도 믿기 어려운 결과만 남는다. 내가 `rlp-desk`를 만든 이유도 바로 그 지점을 더 직접적으로 다뤄보고 싶어서였다.
+
+이 글은 `rlp-desk`의 기능 목록을 소개하려는 글이 아니다. 오히려 왜 `fresh context`가 중요해졌는지, 그리고 그 개념을 실제 실행 구조로 내리면 어떤 모습이 되는지를 빠르게 보여주는 허브 글에 가깝다. Ralph Loop를 처음 접했든, 외부 링크를 통해 바로 들어왔든, 이 글 하나로 문제의식과 구현 구조를 같이 잡을 수 있게 하려는 의도가 있다.
+
+<section class="start-card">
+  <p class="feature-label">Start here</p>
+  <p><strong>GitHub</strong><br><a href="https://github.com/ai-dev-methodologies/rlp-desk">https://github.com/ai-dev-methodologies/rlp-desk</a></p>
+  <p><strong>Install</strong></p>
 
 ```bash
 npm install -g @ai-dev-methodologies/rlp-desk
 ```
-
+</section>
 ## 이 글에서 먼저 잡아둘 것
 
 이 글은 단순 사용기보다, 내가 왜 `rlp-desk`를 만들었고 어떤 철학을 실제 구조로 내렸는지부터 설명하려는 글이다.
