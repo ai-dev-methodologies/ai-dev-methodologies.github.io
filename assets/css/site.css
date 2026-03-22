@@ -145,7 +145,9 @@ h2 {
 .feature-card,
 .post-card,
 .lede-box,
-.start-card {
+.start-card,
+.resource-block,
+.resource-card {
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(221, 214, 200, 0.9);
   border-radius: 18px;
@@ -228,17 +230,57 @@ h2 {
   color: var(--color-secondary);
 }
 
-.start-card {
+.resource-block {
   padding: 18px 20px;
   margin: 24px 0 28px;
 }
 
-.start-card p {
-  margin: 0 0 12px;
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.start-card p:last-child {
-  margin-bottom: 0;
+.resource-grid.single-column {
+  grid-template-columns: 1fr;
+}
+
+.resource-card {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.resource-title {
+  margin: 0 0 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+}
+
+.install-snippet {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #101013;
+  color: #f5f5f5;
+  overflow-x: auto;
+}
+
+.install-snippet code {
+  font-family: "JetBrains Mono", monospace;
+  color: inherit;
+}
+
+.reference-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.reference-list li + li {
+  margin-top: 8px;
 }
 
 .post-body a {
@@ -252,6 +294,10 @@ h2 {
 
 @media (max-width: 860px) {
   .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-grid {
     grid-template-columns: 1fr;
   }
 }
