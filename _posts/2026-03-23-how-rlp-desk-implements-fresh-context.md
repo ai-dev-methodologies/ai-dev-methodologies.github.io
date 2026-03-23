@@ -17,13 +17,13 @@ tags:
   - workflow
 ---
 
-`fresh context가 중요하다`는 말만으로는 잘 안 와닿는다. 내가 만든 [`rlp-desk`](https://github.com/ai-dev-methodologies/rlp-desk)를 실제로 어떻게 쓰는지, 그리고 그 안에서 fresh context가 어떤 식으로 만들어지는지부터 보여주는 편이 훨씬 낫다.
+Ralph Loop를 개념으로만 설명하면 오래 남지 않는다. 그래서 나는 그 철학을 실제로 굴러가는 구조로 내려놓은 구현물인 [`rlp-desk`](https://github.com/ai-dev-methodologies/rlp-desk)를 만들었고, 이 글은 그 구현이 fresh context를 어떻게 다루는지 보여주는 허브 글이다.
 
 ## 왜 이 글을 먼저 봐야 하나
 
 AI agent를 실무에 붙여 본 사람이라면 비슷한 순간을 한 번쯤 겪는다. 처음에는 그럴듯하게 잘 가다가, 세션이 길어질수록 방향이 흐려지고, 어느 순간엔 뭔가 많이 한 것 같은데도 믿기 어려운 결과만 남는다. 내가 `rlp-desk`를 만든 이유도 바로 그 지점을 더 직접적으로 다뤄보고 싶어서였다.
 
-이 글은 `rlp-desk`의 기능 목록을 소개하려는 글이 아니다. 오히려 왜 `fresh context`가 중요해졌는지, 그리고 그 개념을 실제 실행 구조로 내리면 어떤 모습이 되는지를 빠르게 보여주는 허브 글에 가깝다. Ralph Loop를 처음 접했든, 외부 링크를 통해 바로 들어왔든, 이 글 하나로 문제의식과 구현 구조를 같이 잡을 수 있게 하려는 의도가 있다.
+이 글은 `rlp-desk`의 기능 목록을 소개하려는 글이 아니다. 오히려 Ralph Loop에서 말하는 `fresh context`와 `filesystem memory`를 내가 어떤 구현으로 내려놓았는지 보여주는 글에 가깝다. Ralph Loop를 처음 접했든, 외부 링크를 통해 바로 들어왔든, 이 글 하나로 “왜 이 구현이 나왔는지”와 “그 구현이 어떻게 생겼는지”를 같이 잡을 수 있게 하려는 의도가 있다.
 
 ## Start here
 
