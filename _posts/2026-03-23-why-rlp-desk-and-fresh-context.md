@@ -15,7 +15,7 @@ tags:
   - filesystem-memory
 ---
 
-`RDESK-003` 허브 글을 읽고 나면 자연스럽게 이런 질문이 생긴다.
+[fresh context를 rlp-desk는 어떻게 구현하나](/blog/how-rlp-desk-implements-fresh-context/)를 읽고 나면 자연스럽게 이런 질문이 생긴다.
 
 > 알겠다. 구조는 보인다. 그런데 왜 굳이 이걸 따로 만들었지?
 
