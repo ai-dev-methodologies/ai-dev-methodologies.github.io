@@ -174,7 +174,7 @@ fresh context 전략이 공허해진다.
 
 ## 다음 글에서 볼 것
 
-다음 글에서는 `RDESK-003`으로 넘어가서,
+다음 글에서는 [fresh context를 rlp-desk는 어떻게 구현하나](/blog/how-rlp-desk-implements-fresh-context/)로 넘어가서,
 - `brainstorm -> init -> run`
 - file contract
 - worker / verifier separation
