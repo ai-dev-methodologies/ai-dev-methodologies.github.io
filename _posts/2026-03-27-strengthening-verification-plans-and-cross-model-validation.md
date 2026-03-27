@@ -19,7 +19,6 @@ tags:
   - self-verification
   - workflow
 ---
-
 ## 이 글의 핵심
 
 이 글은 아래 두 관점으로 읽으면 된다.
@@ -42,25 +41,35 @@ AI에게 기능 구현을 맡길 때 진짜 시간이 새는 순간은 구현이
 `경계값 빠졌어.`
 `아직 이걸 완료라고 보긴 어려워.`
 
-겉으로 보면 AI가 빠르게 코드를 만든 것 같다. 그런데 실제로는 사람이 뒤에서 규칙을 계속 덧붙이고 있는 셈이다. 내가 보기엔 agent loop를 실무에 붙일 때 가장 큰 낭비 중 하나가 바로 여기서 생긴다.
+겉으로 보면 AI가 빠르게 코드를 만든 것 같다. 그런데 실제로는 사람이 뒤에서 규칙을 계속 덧붙이고 있는 셈이다. 내가 보기엔 에이전트 루프를 실무에 붙일 때 가장 큰 낭비 중 하나가 바로 여기서 생긴다.
+
+요즘 이 문제를 설명하는 말도 조금씩 생기고 있다. Addy Osmani가 쓴 [AI writes code faster. Your job is still to prove it works.](https://addyosmani.com/blog/code-review-ai/)나 [Agentic Engineering](https://addyosmani.com/blog/agentic-engineering/)에서 강조하는 문제의식, 그리고 Sonar의 [Verification Gap 조사](https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/)가 바로 이 감각에 가깝다. 코드는 빨리 늘어나는데, 사람의 이해와 검증은 그 속도를 따라가지 못하는 상태다.
+
+나는 이걸 너무 거창하게 따로 번역하고 싶지는 않다. 그냥 실무 감각으로 말하면 이렇다.
+
+- AI가 뽑아내는 코드 양은 늘어난다
+- 그런데 사람은 그 코드를 충분히 이해하지 못한 채 승인하게 된다
+- 결국 나중에 더 많은 보정과 재작업을 떠안게 된다
+
+즉 지금 우리가 겪는 병목은 "모델이 아직 충분히 똑똑하지 않다"에만 있지 않다. **너무 쉽게 만들어진 결과를, 어떻게 판정하고 어디서 멈출지에 대한 기준이 약하다**는 데도 있다.
 
 이번 글은 그 낭비를 줄이는 얘기다. 더 정확히는, `rlp-desk`에서 `검증계획`을 보강하기 전과 후에 무엇이 달라졌는지 보는 글이다.
 
 이 글은 `Ralph Loop` 입문 글은 아니다. `Ralph Loop`와 `fresh context`의 기본 구조는 이미 이해했고, 이제 이런 질문이 남은 사람들에게 더 가깝다.
 
-- loop는 알겠는데, 결과를 얼마나 믿어야 하지?
+- 루프는 알겠는데, 결과를 얼마나 믿어야 하지?
 - 왜 AI에게 비슷한 보정 지시를 계속 반복하게 되지?
 - 모델이 더 좋아졌는데 왜 마지막은 여전히 사람이 계속 잡아줘야 하지?
 
 핵심 주장은 단순하다.
 
-**문제는 loop를 더 오래 돌리느냐가 아니라, 처음부터 검증계획을 얼마나 명확하게 세우느냐에 더 가깝다.**
+**문제는 루프를 더 오래 돌리느냐가 아니라, 처음부터 검증계획을 얼마나 명확하게 세우느냐에 더 가깝다.**
 
 `Ralph Loop` 자체가 아직 낯설다면 먼저 이 글을 보는 편이 낫다.
 
 - [fresh context를 rlp-desk는 어떻게 구현하나](https://ai-dev-methodologies.github.io/blog/how-rlp-desk-implements-fresh-context/)
 
-이 글은 그 다음 단계다. `loop`를 돌리는 법이 아니라, **그 loop가 어떤 기준으로 통과와 실패를 가를지**를 어떻게 더 선명하게 만들었는지 본다.
+이 글은 그 다음 단계다. `loop`를 돌리는 법이 아니라, **그 루프가 어떤 기준으로 통과와 실패를 가를지**를 어떻게 더 선명하게 만들었는지 본다.
 
 ## 1. 아주 작은 예시로 먼저 보자
 
@@ -94,7 +103,7 @@ start==end는 에러야.
 - test spec도 있다
 - Worker와 Verifier도 분리돼 있다
 - 그런데 경계 조건, reject 조건, 수치 목표가 충분히 촘촘하지 않다
-- 그래서 loop를 다시 돌릴 때마다 사람이 방향을 반복해서 보정하게 된다
+- 그래서 루프를 다시 돌릴 때마다 사람이 방향을 반복해서 보정하게 된다
 
 ### 검증계획 보강 후
 
@@ -102,9 +111,33 @@ start==end는 에러야.
 - 어떤 입력이 정상이고 어떤 입력이 실패여야 하는지 미리 적는다
 - 테스트를 "있다/없다"가 아니라 "충분한가"로 본다
 - Verifier가 무엇을 확인해야 하는지 더 구체적으로 남긴다
-- 결과뿐 아니라 과정도 artifact로 남긴다
+- 결과뿐 아니라 과정도 산출물로 남긴다
 
 즉 차이는 "테스트 몇 개 더 썼다"가 아니다. **애초에 AI가 풀어야 할 문제를 더 명확한 경기로 바꿨다**는 데 있다.
+
+## 2.5. 왜 이 얘기가 지금 더 커졌나
+
+이걸 그냥 `rlp-desk` 내부 개선기로만 보면 반만 보는 셈이다. 내가 이번 글을 더 밀고 싶은 이유는, 지금 시장 전체가 거의 같은 문제를 다른 말로 반복하고 있기 때문이다.
+
+첫 번째 신호는 [`Vibe Coding & Verification Debt`](https://addyosmani.com/blog/code-review-ai/) 쪽이다.
+
+- AI는 점점 더 많은 코드를 만들 수 있다
+- 하지만 그 코드를 사람이 충분히 읽고 이해하고 검증하는 속도는 그만큼 빨라지지 않는다
+- 그러면 생산성처럼 보였던 것이 나중에는 이해 부채와 검증 부채로 돌아온다
+
+내가 앞에서 말한 "사람이 뒤에서 규칙을 계속 다시 말하게 되는 상태"가 바로 이 부채의 시작점에 가깝다.
+
+두 번째 신호는 `AI Code Review` 카테고리의 부상이다.
+
+예를 들어 Anthropic은 [Code Review for Claude Code](https://claude.com/blog/code-review)에서 multi-agent review를 전면에 내세웠고, GitHub는 [Copilot code review public preview](https://github.blog/changelog/2025-02-26-code-review-in-github-copilot-is-now-in-public-preview) 이후 [60 million Copilot code reviews and counting](https://github.blog/ai-and-ml/github-copilot/60-million-copilot-code-reviews-and-counting/)이라고 공개할 만큼 리뷰 레이어를 밀고 있다. OpenAI도 [Codex Security: now in research preview](https://openai.com/index/codex-security-now-in-research-preview/)로 리뷰와 보안 검증을 별도 층으로 끌어올리고 있다. 시장도 이미 같은 질문을 하기 시작했다는 뜻이다.
+
+**AI가 코드를 잘 만드는가?**  
+가 아니라  
+**누가 그 코드를 판정하는가?**
+
+이 질문이 더 중요해졌다는 뜻이다.
+
+그래서 이 글은 "우리도 교차검증을 해봤다"는 소개글이 아니다. 오히려 반대다. **왜 검증계획을 더 촘촘하게 쓰고, 왜 reviewer/verifier를 분리하고, 왜 서로 다른 모델을 같은 계획 위에 올려야 하는가**를 `rlp-desk` 사례로 설명하는 글이다.
 
 ## 3. 여기서 말하는 검증계획은 무엇인가
 
@@ -211,7 +244,7 @@ Reproducibility Gate
 
 즉 같은 loop를 더 오래 돌린 게 아니라, **더 많은 경계와 더 많은 판정 기준을 실제로 구현하고 검증했다**고 보는 게 맞다.
 
-## 6. runtime artifact가 달라졌다는 건 꽤 큰 차이다
+## 6. 실행 산출물이 달라졌다는 건 꽤 큰 차이다
 
 ### 보강 전
 
@@ -245,16 +278,16 @@ Reproducibility Gate
 
 여기서 먼저 분리해야 할 게 있다.
 
-- 상위 planning layer:
+- 상위 계획 계층:
   - PRD를 더 잘 깎고
   - 목표와 범위를 더 명확히 하고
   - 계획 자체를 여러 번 두드려 보는 역할
 - `rlp-desk`:
-  - 그렇게 다듬어진 계획을 execution loop와 verification 구조로 옮기는 역할
+  - 그렇게 다듬어진 계획을 실행 루프와 검증 구조로 옮기는 역할
 
-즉 PRD 초안을 잘 만드는 일 자체는 `rlp-desk`의 시각이라기보다, `oh-my-claudecode` 같은 상위 planning 도구를 잘 활용하는 쪽에 가깝다. 실제로 이번에도 PRD 초안은 `deep-interview`로 먼저 좁힌 뒤에 다듬었다.
+즉 PRD 초안을 잘 만드는 일 자체는 `rlp-desk`의 시각이라기보다, `oh-my-claudecode` 같은 상위 계획 도구를 잘 활용하는 쪽에 가깝다. 실제로 이번에도 PRD 초안은 `deep-interview`로 먼저 좁힌 뒤에 다듬었다.
 
-planning layer에서 우리가 실제로 쓴 조합은 거의 이 형태였다.
+계획 계층에서 우리가 실제로 쓴 조합은 거의 이 형태였다.
 
 {% raw %}
 ```text
@@ -280,7 +313,7 @@ If source documents are insufficient, identify gaps before proceeding.
 - 계획 합의를 만드는 [ralplan](https://github.com/Yeachan-Heo/oh-my-claudecode/blob/main/skills/ralplan/SKILL.md)
 - Codex 검토 요청을 보내는 [ask](https://github.com/Yeachan-Heo/oh-my-claudecode/blob/main/skills/ask/SKILL.md)
 
-그리고 이건 "한 번 검토했다" 수준이 아니었다. 실제로 round가 있었다.
+그리고 이건 "한 번 검토했다" 수준이 아니었다. 실제로 여러 차례 라운드가 있었다.
 
 | Round | Codex 이슈 | 상태 |
 | --- | ---: | --- |
@@ -290,7 +323,7 @@ If source documents are insufficient, identify gaps before proceeding.
 | 4차 | 3개 | → 직접 수정 (문서 정합성) |
 | 현재 | 0개 예상 | 3개 모두 plan 내부 참조 불일치였고 수정 완료 |
 
-즉 planning layer에서도 이미 **합의 -> 교차 검증 -> 수정 -> 다시 합의**가 반복되고 있었다.
+즉 계획 계층에서도 이미 **합의 -> 교차 검증 -> 수정 -> 다시 합의**가 반복되고 있었다.
 
 ## 8. 블루프린트는 무엇을 하려는 문서인가
 
@@ -340,7 +373,7 @@ brainstorm → run → verify          Workflow (skill + command composition)
 - `campaign-report.md`
 - `cost-log.jsonl`
 
-즉 이건 "다음 버전에서 이렇게 하자" 수준이 아니라, **실제로 계획을 scaffold와 runtime artifact까지 내려서 돌려 본 사례**다.
+즉 이건 "다음 버전에서 이렇게 하자" 수준이 아니라, **실제로 계획을 스캐폴드와 실행 산출물까지 내려서 돌려 본 사례**다.
 
 최종 결과는 이렇다.
 
@@ -393,7 +426,7 @@ brainstorm → run → verify          Workflow (skill + command composition)
 
 여기서 내가 정말 말하고 싶은 건 세 가지다.
 
-### 1. agent loop의 진짜 병목은 생성이 아니라 판정이다
+### 1. 에이전트 루프의 진짜 병목은 생성이 아니라 판정이다
 
 코드를 만들어 내는 것 자체는 이제 예전만큼 드문 일이 아니다. 더 어려운 건:
 
@@ -415,12 +448,14 @@ brainstorm → run → verify          Workflow (skill + command composition)
 
 에 쓰여야 한다.
 
+이 지점에서 `AI Code Review` 흐름과도 바로 맞닿는다. 시장에서 리뷰 레이어를 별도 제품과 워크플로우로 밀어 올리는 이유도 같다. 앞에서 본 Anthropic, GitHub, OpenAI 흐름이 공통으로 말하는 것도 결국 리뷰를 "마지막에 대충 보는 단계"가 아니라 별도 구조와 별도 책임을 가져야 하는 층으로 다루는 방향이다.
+
 특히 이번 사례는 `consensus`가 왜 중요한지 보여준다. 이건 추상적인 주장보다, 실제로 돌려 본 결과에서 더 잘 드러난다.
 
 이번 `v0.4.x` 과정에서 보인 패턴은 이렇다.
 
 - Claude verifier pass rate는 거의 `100%`에 가까웠다
-- 반대로 Codex verifier는 실제 runtime bug, timeout 누락, TDD 미증거 같은 문제를 더 자주 잡아냈다
+- 반대로 Codex verifier는 실제 실행 버그, timeout 누락, TDD 미증거 같은 문제를 더 자주 잡아냈다
 - Claude만으로 봤다면 production에 반영됐을 가능성이 있는 버그도 있었다
 
 이건 우연이라기보다 구조에 가까운 문제처럼 보인다.
@@ -430,9 +465,18 @@ brainstorm → run → verify          Workflow (skill + command composition)
 | 모델 관계 | Worker와 같은 Claude 계열 | 완전히 다른 계열 모델 |
 | 강점 | 맥락 이해, 의도 해석 | 다른 관점의 교차 검증 |
 | 위험 | 같은 blind spot 공유 가능성 | 더 보수적 판정, 비용 증가 |
-| 이번 사례 | pass가 매우 많았음 | 작은 runtime bug와 미증거를 더 자주 지적 |
+| 이번 사례 | pass가 매우 많았음 | 작은 실행 버그와 미증거를 더 자주 지적 |
 
 즉 `consensus`는 단순한 중복 검증이 아니다. 더 강한 단일 verifier 하나를 붙이는 것과는 다른 효과가 있다. **서로 다른 판정 습관을 가진 모델을 같은 계획 위에 올리면, 단일 에이전트 모델이 절대 못 보거나 그냥 넘어갈 부분까지 더 많이 커버할 수 있다.**
+
+그래서 내가 보기에 지금 실무에서 더 중요한 질문은 "어떤 모델이 제일 강한가" 하나로 끝나지 않는다.
+
+- 어떤 계획 위에서 실행시키는가
+- 누가 완료를 주장하는가
+- 누가 그 주장을 다시 의심하는가
+- 그 판정을 단일 모델에만 맡길 것인가
+
+`AI Code Review` 카테고리가 커진다는 건, 바로 이 질문들이 제품과 팀 운영의 중심으로 올라온다는 뜻이다.
 
 그래서 내가 여기서 강조하고 싶은 건 "더 강한 단일 모델"만의 문제가 아니다.
 
@@ -468,6 +512,14 @@ brainstorm → run → verify          Workflow (skill + command composition)
 - 그 실패를 다시 계획과 실행에 반영하고
 - 다시 검증해서 수렴하게 만든다는 뜻이다
 
+조금 더 넓게 말하면, 이건 `verification debt`를 줄이는 구조이기도 하다.
+
+- 구현이 빨라질수록
+- 사람의 이해와 판정은 더 앞단에서 구조화돼 있어야 하고
+- 리뷰는 부가 기능이 아니라 중심 기능이 된다
+
+내가 이번 글을 통해 보여주고 싶은 건 결국 여기다. `rlp-desk`의 검증계획 강화와 교차모델 검증은 작은 로컬 최적화가 아니라, 지금 AI 코딩 전체가 부딪히는 병목에 대한 하나의 실전 대답이다.
+
 즉 내가 자랑하고 싶은 건 "self-verification 기능이 있다"는 사실이 아니다.  
 **agent를 그냥 계속 돌리는 게 아니라, 틀릴 때 어떻게 틀리는지 드러내고, 그 실패를 다시 구조로 되먹이는 방식**이 있다는 점이다.
 
@@ -475,16 +527,16 @@ brainstorm → run → verify          Workflow (skill + command composition)
 
 내가 보기엔 이렇게 정리하는 게 가장 정확하다.
 
-- 초기 `rlp-desk`는 일반적인 AI 모델이 세우는 보통 수준의 검증계획을 전제로, loop를 안정적으로 돌리는 문제를 해결했다
+- 초기 `rlp-desk`는 일반적인 AI 모델이 세우는 보통 수준의 검증계획을 전제로, 루프를 안정적으로 돌리는 문제를 해결했다
 - 그 구조는 여전히 유효하다
-- 다만 실제로 더 복잡한 작업을 반복시키다 보니, 다음 병목은 loop가 아니라 검증계획의 밀도와 명확성이라는 게 드러났다
-- 그래서 `0.4.0`은 loop를 더 오래 돌리는 대신, 검증계획을 더 앞단으로 끌어오고 더 정량적으로 만들었다
+- 다만 실제로 더 복잡한 작업을 반복시키다 보니, 다음 병목은 루프가 아니라 검증계획의 밀도와 명확성이라는 게 드러났다
+- 그래서 `0.4.0`은 루프를 더 오래 돌리는 대신, 검증계획을 더 앞단으로 끌어오고 더 정량적으로 만들었다
 
 즉 이건 "예전 버전이 잘못됐다"는 얘기가 아니라, **실제 사용을 통해 다음 병목을 발견했고, 그 병목을 다시 구현으로 밀어 넣었다**는 얘기다.
 
 ## 15. 내가 앞으로 더 보려는 방향
 
-이 글을 쓰면서 더 분명해진 건, planning layer와 execution layer를 따로 보면 안 된다는 점이다.
+이 글을 쓰면서 더 분명해진 건, 계획 계층과 실행 계층을 따로 보면 안 된다는 점이다.
 
 - 위에서는 `deep-interview`, `ralplan`, Codex cross-validation으로 계획을 보강하고
 - 아래에서는 `rlp-desk`가 그 계획을 흐리지 못하게 실행과 검증을 묶는다
@@ -495,7 +547,7 @@ brainstorm → run → verify          Workflow (skill + command composition)
 
 - 더 좋은 PRD를 만드는 방법
 - 더 좋은 검증계획을 세우는 방법
-- 그 계획을 loop가 흐리지 못하게 만드는 실행 구조
+- 그 계획을 루프가 흐리지 못하게 만드는 실행 구조
 
 다음 단계도 같은 방향이다. 남은 작은 이슈들을 다시 `ralplan + codex` 분석 검토 루프로 다루는 이유도 여기 있다. 정밀한 구현일수록 구현 능력보다 **정확한 판정과 높은 해상도의 분석**이 더 중요해지기 때문이다.
 
