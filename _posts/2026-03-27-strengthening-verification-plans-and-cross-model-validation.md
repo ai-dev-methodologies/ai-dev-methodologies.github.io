@@ -294,7 +294,7 @@ Reproducibility Gate
 /ralplan {{OBJECTIVE}}
 {{SCOPE}}
 Run codex cross-validation after consensus. Repeat revise -> consensus -> codex until 0 issues.
-If source documents are insufficient, identify gaps before proceeding.
+If the code, requirements, or source documents are insufficient or unclear, identify the gaps before proceeding.
 ```
 {% endraw %}
 
