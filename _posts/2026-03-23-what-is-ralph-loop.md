@@ -90,5 +90,6 @@ AI 코딩을 조금만 길게 돌려보면 비슷한 문제가 생긴다.
     <li><a href="/blog/how-rlp-desk-implements-fresh-context/">fresh context를 rlp-desk는 어떻게 구현하나</a></li>
     <li><a href="/blog/why-rlp-desk-and-fresh-context/">왜 rlp-desk인가 / fresh context의 장점</a></li>
     <li><a href="/blog/rlp-desk-codex-consensus-and-whats-next/">rlp-desk 심화: Codex, consensus verify, 그리고 다음 단계</a></li>
+    <li><a href="/blog/strengthening-verification-plans-and-cross-model-validation/">검증계획을 강화하니, 교차모델 검증의 가치가 더 분명해졌다</a></li>
   </ol>
 </section>
