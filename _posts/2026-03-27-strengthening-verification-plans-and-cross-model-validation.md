@@ -267,10 +267,12 @@ If source documents are insufficient, identify gaps before proceeding.
 
 여기서 placeholder는 이렇게 읽으면 된다.
 
+{% raw %}
 | placeholder | 뜻 |
 | --- | --- |
 | `{{OBJECTIVE}}` | 이번 planning의 목표. 어떤 문서나 기능을 다듬으려는지 적는다 |
 | `{{SCOPE}}` | 실제로 손댈 파일이나 디렉터리 범위. 없으면 현재 프로젝트 전체로 본다 |
+{% endraw %}
 
 여기서 사용한 도구는:
 
