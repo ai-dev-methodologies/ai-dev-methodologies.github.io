@@ -8,6 +8,7 @@ series_slug: "ralph-loop"
 series_order: 1
 featured_series: true
 tags:
+  - ralph
   - ralph-loop
   - fresh-context
   - ai-coding

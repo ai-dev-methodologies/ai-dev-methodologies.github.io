@@ -8,6 +8,7 @@ series_slug: "rlp-desk"
 series_order: 6
 featured_series: true
 tags:
+  - ralph
   - ralph-loop
   - rlp-desk
   - fresh-context

@@ -8,6 +8,8 @@ series_slug: "rlp-desk"
 series_order: 4
 featured_series: true
 tags:
+  - ralph
+  - ralph-loop
   - rlp-desk
   - fresh-context
   - proof-asset
