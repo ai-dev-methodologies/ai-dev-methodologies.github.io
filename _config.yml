@@ -18,6 +18,14 @@ defaults:
     values:
       layout: post
       author: kyjin
+  - scope:
+      path: "design-system"
+    values:
+      sitemap: false
+  - scope:
+      path: "googleda23611550ed1d33.html"
+    values:
+      sitemap: false
 google_site_verification: ""
 naver_site_verification: "d483a45ab5cb2dae234f93f8a6c4c0f78d7cd989"
 ga4_measurement_id: "G-KF8KZS0JN8"
