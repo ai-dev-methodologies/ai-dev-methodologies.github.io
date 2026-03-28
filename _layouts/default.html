@@ -9,6 +9,12 @@
     {% if meta_description %}
     <meta name="description" content="{{ meta_description | escape }}">
     {% endif %}
+    {% if site.google_site_verification and site.google_site_verification != "" %}
+    <meta name="google-site-verification" content="{{ site.google_site_verification | escape }}">
+    {% endif %}
+    {% if site.naver_site_verification and site.naver_site_verification != "" %}
+    <meta name="naver-site-verification" content="{{ site.naver_site_verification | escape }}">
+    {% endif %}
     {% if page.tags %}
     <meta name="keywords" content="{{ page.tags | join: ', ' | escape }}">
     {% endif %}
@@ -24,6 +30,15 @@
     <meta property="og:locale" content="ko_KR">
     {% seo %}
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+    {% if site.ga4_measurement_id and site.ga4_measurement_id != "" %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4_measurement_id | escape }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.ga4_measurement_id | escape }}');
+    </script>
+    {% endif %}
   </head>
   <body>
     <header class="site-header">
