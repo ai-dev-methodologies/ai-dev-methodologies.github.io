@@ -279,9 +279,6 @@ oc-gpt() {
 
 - [oh-my-opencode README](https://github.com/code-yeongyu/oh-my-opencode) — OMO 공식 문서
 - [opencode-multi-auth](https://github.com/guard22/opencode-multi-auth-codex) — Codex $20 다중 계정 rotation
-- `~/.config/opencode/oh-my-openagent.json` — Claude 기본 배치 설정
-- `~/.config/opencode-gpt-heavy/oh-my-openagent.json` — GPT 우선 배치 설정
-- `docs/reference/OMO-OPENCODE-LOCAL-MODEL-MAPPING-2026-04-05.md` — 현황/공식/운영 3층 매핑 참조
 
 ---
 
