@@ -378,6 +378,64 @@ h2 {
   margin-top: 8px;
 }
 
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0 28px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.post-body thead {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.post-body th {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 10px 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.post-body td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.post-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.post-body tbody tr:hover {
+  background: rgba(255, 253, 247, 0.6);
+}
+
+.post-body table code {
+  font-size: 0.85em;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .post-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .post-body th,
+  .post-body td {
+    padding: 8px 10px;
+    font-size: 0.84rem;
+  }
+}
+
 .post-body a {
   color: var(--color-primary);
   text-decoration-thickness: 1.5px;
