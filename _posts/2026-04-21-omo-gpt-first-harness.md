@@ -25,7 +25,7 @@ tags:
 
 ---
 
-## Claude 중심 대비 GPT 중심의 체감 차이
+## Claude vs GPT: 체감 차이
 
 | 항목 | `opencode` (Claude 우선) | `oc-gpt` (GPT 우선) |
 |---|---|---|
