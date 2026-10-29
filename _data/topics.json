@@ -1,0 +1,27 @@
+[
+  {
+    "id": "models",
+    "name": "모델 선택과 비용",
+    "description": "가격표와 성능표를 내 업무의 선택 기준으로 바꾼다."
+  },
+  {
+    "id": "agents",
+    "name": "에이전트와 자동화",
+    "description": "여러 AI에게 일을 나누고 결과를 연결하는 방법을 읽는다."
+  },
+  {
+    "id": "context",
+    "name": "기억과 맥락",
+    "description": "긴 대화보다 중요한 기록과 인수인계의 원리를 익힌다."
+  },
+  {
+    "id": "verification",
+    "name": "테스트와 검증",
+    "description": "AI가 끝냈다는 말과 실제 성공을 구분한다."
+  },
+  {
+    "id": "practice",
+    "name": "구현과 운영",
+    "description": "rlp-desk의 공개 코드와 구체적인 사용 흐름을 따라간다."
+  }
+]

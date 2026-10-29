@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: [verification]
 title: "rlp-desk 실무편 4: 검증계획을 강화하니, 교차모델(Claude, Codex) 검증의 가치가 더 분명해졌다"
 description: "검증계획을 더 명확하게 세우고 Claude와 Codex를 교차 검증 경로에 올리자, rlp-desk는 더 많은 사각지대를 줄이고 더 견고한 결과를 만들기 시작했다."
 permalink: /blog/strengthening-verification-plans-and-cross-model-validation/

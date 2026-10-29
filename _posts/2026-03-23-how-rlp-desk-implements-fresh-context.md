@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: [practice]
 title: "fresh context를 rlp-desk는 어떻게 구현하나"
 description: "rlp-desk의 brainstorm, init, run 흐름과 Agent(), codex exec, tmux pane trigger를 통해 fresh context가 실제로 어떻게 구현되는지 설명한다."
 permalink: /blog/how-rlp-desk-implements-fresh-context/

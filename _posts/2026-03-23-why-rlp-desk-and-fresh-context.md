@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: [context]
 title: "왜 rlp-desk인가 / fresh context의 장점"
 description: "왜 Ralph Loop를 구현 자산으로 내려놓아야 했는지, 그리고 fresh context가 실제 운영 방식에서 무엇을 바꾸는지 설명한다."
 permalink: /blog/why-rlp-desk-and-fresh-context/

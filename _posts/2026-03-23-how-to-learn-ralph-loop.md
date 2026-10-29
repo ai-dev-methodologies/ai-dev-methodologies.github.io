@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: [agents]
 title: "Ralph Loop 학습 가이드"
 description: "Ralph Loop를 무엇부터 읽고, 무엇을 점검하고, 무엇을 직접 따라 해봐야 하는지 단계별로 정리한다."
 permalink: /blog/how-to-learn-ralph-loop/

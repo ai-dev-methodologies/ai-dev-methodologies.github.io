@@ -1,19 +1,18 @@
 ---
 layout: default
 title: ai-dev-methodologies
-description: Ralph Loop, rlp-desk, workflow methodology, and verification planning notes.
+description: AI 모델 선택, 검증, 기억과 맥락을 쉬운 예시로 배우고 공개 구현으로 잇는 kyjin의 학습 포트폴리오.
 ---
 
 <section class="hero">
   <p class="eyebrow">AI DEVELOPMENT METHODOLOGIES</p>
-  <h1>Ralph Loop, <span class="accent">rlp-desk</span>, 그리고 검증 가능한 AI workflow</h1>
+  <h1>AI를 읽고, 비교하고,<br><span class="accent">내 기준으로.</span></h1>
   <p class="hero-copy">
-    비정형 자동화 실험을 빠르게 만들고, 점점 더 반복 가능한 workflow와 verification methodology로
-    정리해 가는 과정을 기록한다.
+    모델의 가격부터 AI가 일을 끝냈다는 근거까지. 학습한 내용을 쉬운 예시로 풀고, 내 판단과 공개 구현으로 연결한다.
   </p>
   <div class="hero-actions">
-    <a class="btn-primary" href="/blog/how-rlp-desk-implements-fresh-context/">핵심 글부터 읽기</a>
-    <a class="btn-secondary" href="/blog/">전체 글 보기</a>
+    <a class="btn-primary" href="/learn/">학습 서재에서 시작하기</a>
+    <a class="btn-secondary" href="/about/">소개와 포트폴리오</a>
   </div>
 </section>
 
@@ -34,3 +33,5 @@ description: Ralph Loop, rlp-desk, workflow methodology, and verification planni
     <p>비정형 자동화 실험을 workflow로 정형화하고, agent의 가짜 확신을 막는 검증 계획을 설계하는 방향.</p>
   </article>
 </section>
+
+<section class="group-section"><p class="eyebrow">LATEST NOTES</p><h2>최근에 정리한 판단</h2><ul class="post-list">{% for post in site.posts limit:3 %}<li><article class="post-card"><p class="meta">{{ post.date | date: "%Y-%m-%d" }}</p><a class="post-card-title" href="{{ post.url | relative_url }}">{{ post.title }}</a><p>{{ post.description }}</p></article></li>{% endfor %}</ul><a href="/learn/">주제별로 더 읽기 →</a></section>

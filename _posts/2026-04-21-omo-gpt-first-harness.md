@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: [agents]
 title: "oh-my-opencode를 여러 세션으로 돌릴수록, GPT 중심 구성이 유리해지는 이유"
 description: "oh-my-opencode의 에이전트/카테고리 배치를 GPT 중심으로 재구성해서 토큰 효율을 3배 높이고 병렬 세션 3~5개를 운영하는 방법"
 permalink: /blog/omo-gpt-first-harness/

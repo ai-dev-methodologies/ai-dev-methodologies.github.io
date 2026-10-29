@@ -500,3 +500,28 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
+
+/* Learning library: preserve the existing editorial palette. */
+[hidden] { display: none !important; }
+html { scroll-padding-top: 120px; }
+.content { overflow-wrap: anywhere; }
+h1, h2, h3 { word-break: keep-all; line-height: 1.25; }
+a:focus-visible, input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid #b32265; outline-offset: 4px; }
+.skip-link { position: absolute; left: 16px; top: -100px; background: #18181b; color: white; padding: 12px; z-index: 50; }
+.skip-link:focus { top: 8px; }
+.topic-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0; }
+.topic-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid #b9b0a0; border-radius: 999px; color: var(--color-primary); text-decoration: none; background: white; }
+.topic-section { scroll-margin-top: 24px; margin-top: 56px; }
+.library-tools { display: flex; flex-wrap: wrap; align-items: end; gap: 14px; }
+.library-tools > div { flex: 1 1 220px; }
+.library-tools label { display: block; font-weight: 600; margin-bottom: 6px; }
+.library-tools input, .library-tools select, .library-tools button { font: inherit; box-sizing: border-box; min-height: 46px; border: 1px solid #b9b0a0; border-radius: 8px; padding: 8px 12px; background: white; color: #18181b; }
+.library-tools input, .library-tools select { width: 100%; }
+.library-tools button { cursor: pointer; }
+.series-card h2 { margin-top: 0; }
+.eyebrow, .feature-label { color: #a61b59; }
+.post-header .eyebrow a { color: inherit; }
+.content > table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+.content > table th, .content > table td { border-bottom: 1px solid #ddd6c8; padding: 12px; text-align: left; }
+@media (max-width: 600px) { .site-header { flex-wrap: wrap; gap: 12px; padding: 14px 20px; } .site-header nav { display: flex; gap: 20px; } .site-header nav a { display: inline-flex; align-items: center; min-height: 44px; margin: 0; } .brand { font-size: 14px; } .content { padding-top: 32px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; transform: none !important; } }

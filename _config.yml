@@ -1,8 +1,12 @@
 title: ai-dev-methodologies
-description: AI development methodologies, Ralph Loop, and rlp-desk notes.
+description: AI를 읽고 비교하며 내 기준을 만드는 kyjin의 학습 포트폴리오.
 url: "https://ai-dev-methodologies.github.io"
 baseurl: ""
 lang: ko
+locale: ko_KR
+author:
+  name: kyjin
+  url: https://ai-dev-methodologies.github.io/about/
 timezone: Asia/Seoul
 markdown: kramdown
 permalink: /blog/:title/
@@ -18,6 +22,8 @@ defaults:
     values:
       layout: post
       author: kyjin
+      seo:
+        type: BlogPosting
   - scope:
       path: "design-system"
     values:
