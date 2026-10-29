@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="robots" content="{% if page.noindex %}noindex,follow{% else %}index,follow,max-image-preview:large{% endif %}">
     {% if site.google_site_verification and site.google_site_verification != "" %}
     <meta name="google-site-verification" content="{{ site.google_site_verification | escape }}">
     {% endif %}

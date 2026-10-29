@@ -42,15 +42,9 @@ AI agent를 실무에 붙여 본 사람이라면 비슷한 순간을 한 번쯤 
     </div>
   </div>
 </section>
-## 이 글에서 먼저 잡아둘 것
+## 파일로 관리하는 작업 상태
 
-이 글은 단순 사용기보다, 내가 왜 `rlp-desk`를 만들었고 어떤 철학을 실제 구조로 내렸는지부터 설명하려는 글이다.
-
-- [Ralph Loop 원론](https://ghuntley.com/ralph/)과 [aihero.dev의 Getting Started with Ralph](https://www.aihero.dev/getting-started-with-ralph), [Tips for AI Coding with Ralph Wiggum](https://www.aihero.dev/tips-for-ai-coding-with-ralph-wiggum)에서 fresh context와 파일 기반 상태 유지의 감각을 가져왔다
-- [OpenAI의 Codex long-horizon tasks 글](https://developers.openai.com/blog/run-long-horizon-tasks-with-codex/)에서 장기 작업을 문서와 아티팩트로 굴리는 방식을 적극 반영했다
-- 그 결과 `PRD`, `test spec`, `memory`, `iter-signal`, `verify-verdict` 같은 파일 이름과 역할이 굳어졌다
-
-즉 `rlp-desk`는 Ralph를 막연히 흉내 낸 게 아니라, Ralph의 인사이트와 Codex의 파일 기반 운영 감각을 합쳐 만든 실행 도구다.
+`rlp-desk`는 Ralph Loop의 fresh context와 파일 기반 상태 관리를 실행 도구로 구현한다. `PRD`에는 요구사항을, `test spec`에는 검증할 조건을 기록한다. `memory`, `iter-signal`, `verify-verdict`는 작업 이력과 반복 상태, 검수 결과를 다음 실행에 전달한다.
 
 <figure class="diagram-card">
   <img src="/assets/img/rdesk-bridge.svg" alt="Ralph Loop의 인사이트가 rlp-desk 구현으로 이어지는 흐름 다이어그램">
@@ -282,20 +276,3 @@ worker는 작업을 끝냈다고 주장할 수 있다. 하지만 그건 어디�
 </section>
 
 좋은 PRD와 breakdown은 점점 더 잘 만들어진다. 반면 목적에 맞는 검증 계획과 테스트 경계를 세우는 일은 아직 훨씬 덜 정리돼 있다. 내가 다음에 더 오래 붙잡고 싶은 문제도 바로 그 부분이다.
-
-## References
-
-<section class="resource-block reference-block">
-  <div class="resource-grid single-column">
-    <div class="resource-card reference-card">
-      <p class="resource-title">References</p>
-      <ul class="reference-list">
-        <li><a href="https://developers.openai.com/blog/run-long-horizon-tasks-with-codex/">OpenAI, Run long-horizon tasks with Codex</a></li>
-        <li><a href="https://www.aihero.dev/getting-started-with-ralph">Getting Started with Ralph</a></li>
-        <li><a href="https://www.aihero.dev/tips-for-ai-coding-with-ralph-wiggum">Tips for AI Coding with Ralph Wiggum</a></li>
-        <li><a href="https://github.com/Yeachan-Heo/oh-my-claudecode"><code>oh-my-claudecode</code></a></li>
-        <li><a href="https://github.com/ai-dev-methodologies/rlp-desk"><code>rlp-desk</code> repository</a></li>
-      </ul>
-    </div>
-  </div>
-</section>

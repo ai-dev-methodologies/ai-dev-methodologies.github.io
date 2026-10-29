@@ -20,7 +20,7 @@ tags:
   - agentic-coding
 ---
 
-> 이 글은 oh-my-opencode(OMO)를 이미 쓰고 있는 사람을 위한 글이다. 에이전트 구조나 opencode 기본 사용법은 따로 설명하지 않는다.
+> 이 글은 [oh-my-opencode(OMO)](https://github.com/code-yeongyu/oh-my-opencode)를 이미 쓰고 있는 사람을 위한 글이다. 에이전트 구조나 opencode 기본 사용법은 따로 설명하지 않는다.
 
 **TL;DR**: OMO 에이전트와 카테고리 배치를 GPT 중심으로 바꿨다. planning chain 메인 축, execution 에이전트, 범용 카테고리를 GPT로 옮기고, 교차검증(momus)과 고수준 자문(oracle)만 Claude에 남겼다. 시각/글쓰기는 Gemini. 같은 토큰 예산으로 약 3배 더 많은 작업을 돌릴 수 있고, 병렬 세션 3~5개가 현실적으로 가능하다.
 
@@ -257,12 +257,3 @@ oc-gpt() {
 모델 우열이 아니라 baseline / experiment / safety layer를 어떻게 나누느냐가 핵심이다.
 
 ---
-
-## Further Reading
-
-- [oh-my-opencode README](https://github.com/code-yeongyu/oh-my-opencode) — OMO 공식 문서
-- [opencode-multi-auth](https://github.com/guard22/opencode-multi-auth-codex) — Codex $20 다중 계정 rotation
-
----
-
-**설정 근거**: 이 글의 모든 모델 배치는 운용 중인 `oh-my-openagent.json` 설정 파일과 OMO 패키지 소스를 근거로 한다.

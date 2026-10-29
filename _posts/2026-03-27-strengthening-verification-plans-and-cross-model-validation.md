@@ -44,7 +44,7 @@ AI에게 기능 구현을 맡길 때 진짜 시간이 새는 순간은 구현이
 
 겉으로 보면 AI가 빠르게 코드를 만든 것 같다. 그런데 실제로는 사람이 뒤에서 규칙을 계속 덧붙이고 있는 셈이다. 내가 보기엔 에이전트 루프를 실무에 붙일 때 가장 큰 낭비 중 하나가 바로 여기서 생긴다.
 
-요즘 이 문제를 설명하는 말도 조금씩 생기고 있다. Addy Osmani가 쓴 [AI writes code faster. Your job is still to prove it works.](https://addyosmani.com/blog/code-review-ai/)나 [Agentic Engineering](https://addyosmani.com/blog/agentic-engineering/)에서 강조하는 문제의식, 그리고 Sonar의 [Verification Gap 조사](https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/)가 바로 이 감각에 가깝다. 코드는 빨리 늘어나는데, 사람의 이해와 검증은 그 속도를 따라가지 못하는 상태다.
+코드를 생성하는 속도에 비해 검토가 늦어지면, 확인하지 못한 동작이 누적된다. 이 경우에는 코드 작성 시간과 별도로 검토·수정에 든 시간을 봐야 한다.
 
 나는 이걸 너무 거창하게 따로 번역하고 싶지는 않다. 그냥 실무 감각으로 말하면 이렇다.
 
@@ -116,29 +116,11 @@ start==end는 에러야.
 
 즉 차이는 "테스트 몇 개 더 썼다"가 아니다. **애초에 AI가 풀어야 할 문제를 더 명확한 경기로 바꿨다**는 데 있다.
 
-## 2.5. 왜 이 얘기가 지금 더 커졌나
+## 2.5. 코드 생성과 합격 판정을 분리하는 이유
 
-이걸 그냥 `rlp-desk` 내부 개선기로만 보면 반만 보는 셈이다. 내가 이번 글을 더 밀고 싶은 이유는, 지금 시장 전체가 거의 같은 문제를 다른 말로 반복하고 있기 때문이다.
+작업자가 구현과 완료 판단을 모두 맡으면, 구현에 사용한 가정이 검수에도 그대로 이어질 수 있다. 검토할 코드가 늘어날수록 사람이 빠뜨린 조건을 뒤늦게 발견할 가능성도 커진다.
 
-첫 번째 신호는 [`Vibe Coding & Verification Debt`](https://addyosmani.com/blog/code-review-ai/) 쪽이다.
-
-- AI는 점점 더 많은 코드를 만들 수 있다
-- 하지만 그 코드를 사람이 충분히 읽고 이해하고 검증하는 속도는 그만큼 빨라지지 않는다
-- 그러면 생산성처럼 보였던 것이 나중에는 이해 부채와 검증 부채로 돌아온다
-
-내가 앞에서 말한 "사람이 뒤에서 규칙을 계속 다시 말하게 되는 상태"가 바로 이 부채의 시작점에 가깝다.
-
-두 번째 신호는 `AI Code Review` 카테고리의 부상이다.
-
-예를 들어 Anthropic은 [Code Review for Claude Code](https://claude.com/blog/code-review)에서 multi-agent review를 전면에 내세웠고, GitHub는 [Copilot code review public preview](https://github.blog/changelog/2025-02-26-code-review-in-github-copilot-is-now-in-public-preview) 이후 [60 million Copilot code reviews and counting](https://github.blog/ai-and-ml/github-copilot/60-million-copilot-code-reviews-and-counting/)이라고 공개할 만큼 리뷰 레이어를 밀고 있다. OpenAI도 [Codex Security: now in research preview](https://openai.com/index/codex-security-now-in-research-preview/)로 리뷰와 보안 검증을 별도 층으로 끌어올리고 있다. 시장도 이미 같은 질문을 하기 시작했다는 뜻이다.
-
-**AI가 코드를 잘 만드는가?**  
-가 아니라  
-**누가 그 코드를 판정하는가?**
-
-이 질문이 더 중요해졌다는 뜻이다.
-
-그래서 이 글은 "우리도 교차검증을 해봤다"는 소개글이 아니다. 오히려 반대다. **왜 검증계획을 더 촘촘하게 쓰고, 왜 reviewer/verifier를 분리하고, 왜 서로 다른 모델을 같은 계획 위에 올려야 하는가**를 `rlp-desk` 사례로 설명하는 글이다.
+`rlp-desk`에서 검증계획과 reviewer/verifier를 분리한 이유는 이 가정을 다시 확인하기 위해서다. 서로 다른 모델을 쓰더라도 같은 완료 기준과 테스트 경계를 공유해야 결과를 비교할 수 있다.
 
 ## 3. 여기서 말하는 검증계획은 무엇인가
 
