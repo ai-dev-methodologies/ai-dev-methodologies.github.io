@@ -10,7 +10,7 @@ series: "AI 에이전트 설계 노트"
 series_order: 2
 level: 입문
 date: 2026-10-29 15:00:00 +0900
-last_modified_at: 2026-10-29 21:00:00 +0900
+last_modified_at: 2026-10-30 09:45:22 +0900
 image: /assets/img/evaluation-path.png
 permalink: /writing-lab/researched/deepseek-model-evaluation/
 canonical_url: https://ai-dev-methodologies.github.io/blog/deepseek-model-evaluation/
@@ -44,15 +44,15 @@ sitemap: false
 
 ## 새 모델의 점수와 실제 업무의 차이
 
-DeepSeek V4.1-Flash-1017은 2026년 10월 17일 공개된 업데이트다. API에서는 `deepseek-flash`라는 이름을 유지한 채 새 모델을 제공한다. 호출 이름을 그대로 쓴다고 결과도 그대로인 것은 아니다. 모델이 바뀌면 우리 업무의 정답 조건을 다시 확인해야 한다.
+DeepSeek V4.1-Flash-1017은 2026년 10월 17일 공개된 업데이트다. [공식 API 안내](https://api-docs.deepseek.com/quick_start/agent_integrations/)에 따르면 `deepseek-flash`라는 이름을 유지한 채 새 모델을 제공한다. 호출 이름을 그대로 쓴다고 결과도 그대로인 것은 아니다. 모델이 바뀌면 우리 업무의 정답 조건을 다시 확인해야 한다.
 
-공급자 Terminal-Bench 4는 31.2에서 42.3으로 11.1퍼센트포인트 상승했다. DeepSWE는 74.2에서 77, Automation-Bench는 54.8에서 60.5다. 10월 27일 Vals Mini-SWE-agent 평가에서는 Flash-1017이 31.82%, 테스트당 $0.54이고 이전 Flash는 19.70%, $0.50이다. 공급자 TB4의 Claude Code 하네스와 Vals 결과를 하나의 순위로 합치면 안 된다. Vals는 66개 작업을 세 번씩 실행한 avg@3 조건이다.
+[DeepSeek 공식 모델 카드](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017)의 Terminal-Bench 4는 31.2에서 42.3으로 11.1퍼센트포인트 상승했다. DeepSWE는 74.2에서 77, Automation-Bench는 54.8에서 60.5다. [Vals Mini-SWE-agent 평가](https://www.vals.ai/benchmarks/terminal-bench-4)(10월 29일 갱신, 10월 30일 확인)에서는 Flash-1017이 31.82%, 테스트당 $0.54이고 이전 Flash는 19.70%, $0.50이다. 공급자 TB4의 Claude Code 하네스와 Vals 결과를 하나의 순위로 합치면 안 된다. Vals는 66개 작업을 세 번씩 실행한 avg@3 조건이다.
 
 Youssef Hosni가 10월 23일 기록한 이 예제의 한 실행은 모델 호출 2회, 전체 반복 처리 시간 2.312초였다. 입력 855토큰 중 256토큰이 캐시였고 출력은 154토큰이었다. 한 사례가 성공했다는 기록이지, 환불 판단의 평균 정확도나 서비스 지연 시간을 입증한 결과는 아니다.
 
 ## 가격 계산은 신뢰도 계산이 아니다
 
-2026년 10월의 비교에 사용한 API 요금은 다음과 같다. 단위는 미국 달러이며 토큰 100만 개당 가격이다.
+2026년 10월의 비교에 사용한 [DeepSeek 공식 API 요금](https://api-docs.deepseek.com/quick_start/pricing/)은 다음과 같다. 단위는 미국 달러이며 토큰 100만 개당 가격이다.
 
 | 시간대 | 새 입력 | 캐시 입력 | 출력 |
 |---|---:|---:|---:|

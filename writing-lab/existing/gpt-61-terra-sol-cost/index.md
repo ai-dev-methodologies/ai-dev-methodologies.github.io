@@ -10,7 +10,7 @@ series: "AI 에이전트 설계 노트"
 series_order: 1
 level: 입문
 date: 2026-10-29 15:00:00 +0900
-last_modified_at: 2026-10-29 21:00:00 +0900
+last_modified_at: 2026-10-30 09:45:22 +0900
 image: /assets/img/terra-cost.png
 permalink: /writing-lab/existing/gpt-61-terra-sol-cost/
 canonical_url: https://ai-dev-methodologies.github.io/blog/gpt-61-terra-sol-cost/
@@ -22,7 +22,7 @@ sitemap: false
 
 Terra의 API 단가가 낮아졌다는 사실만으로 코딩 모델을 바꾸기는 어렵다. 판단 단위는 토큰 가격이 아니라 미리 정한 통과 조건을 통과한 작업 하나의 총비용이다. 토큰은 모델이 읽고 쓰는 양, 캐시는 이전 입력을 다시 읽을 때 낮아지는 입력 요금, 하네스는 평가가 작업을 실행하고 채점하는 환경이다.
 
-10월 27일 갱신된 Vals의 Mini-SWE-agent Terminal-Bench 4에서는 Sol 6.1이 55.05%, 테스트당 $1.72, Terra 6.1이 49.49%, $2.04였다. Terra는 32분 45초로 더 빨랐지만, 점수는 5.56퍼센트포인트 낮고 비용은 18.6% 높다. Opus 5.5는 65.15%, $13.20, 1시간 4분이다. 같은 하네스를 썼더라도 추론 강도와 토큰 구성이 같다고 단정할 수 없으며, 이 결과는 모든 코딩 업무의 결론이 아니다.
+[Vals의 Mini-SWE-agent Terminal-Bench 4](https://www.vals.ai/benchmarks/terminal-bench-4)(10월 29일 갱신, 10월 30일 확인)에서는 Sol 6.1이 55.05%, 테스트당 $1.72, Terra 6.1이 49.49%, $2.04였다. Terra는 32분 45초로 더 빨랐지만, 점수는 5.56퍼센트포인트 낮고 비용은 18.6% 높다. Opus 5.5는 65.15%, $13.20, 1시간 4분이다. 같은 하네스를 썼더라도 추론 강도와 토큰 구성이 같다고 단정할 수 없으며, 이 결과는 모든 코딩 업무의 결론이 아니다.
 
 | 모델 | Terminal-Bench 4 점수 | 테스트당 비용 | 시간 |
 |---|---:|---:|---:|
@@ -36,10 +36,10 @@ Terra의 API 단가가 낮아졌다는 사실만으로 코딩 모델을 바꾸�
 
 | 모델 | 입력 | 캐시 입력 | 출력 |
 |---|---:|---:|---:|
-| 5.6 Terra | $2 | $0.20 | $12 |
-| 6 Sol | $2 | $0.20 | $10 |
-| 6.1 Sol | $2 | $0.10 | $10 |
-| 6.1 Terra | $1 | $0.05 | $5 |
+| [5.6 Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra) | $2 | $0.20 | $12 |
+| [6 Sol](https://developers.openai.com/api/docs/models/gpt-6-sol) | $2 | $0.20 | $10 |
+| [6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) | $2 | $0.10 | $10 |
+| [6.1 Terra](https://developers.openai.com/api/docs/models/gpt-6.1-terra) | $1 | $0.05 | $5 |
 
 | 가정 | 5.6 Terra | 6.1 Sol | 6.1 Terra |
 |---|---:|---:|---:|
@@ -56,9 +56,9 @@ Terra의 API 단가가 낮아졌다는 사실만으로 코딩 모델을 바꾸�
 
 ## 4배의 가격 차이와 9배의 작업 비용은 다르다
 
-Opus 5.5의 입력·캐시 읽기·출력 단가는 각각 $4·$0.20·$20이다. 새 Terra는 이 세 항목에서 각각 4분의 1이다. 캐시를 새로 쓰는 요금과 도구 비용 등은 별도 조건이므로 모든 청구 항목이 같은 비율이라는 뜻은 아니다.
+[Anthropic 공식 가격표](https://platform.claude.com/docs/en/about-claude/pricing)의 Opus 5.5 입력·캐시 읽기·출력 단가는 각각 $4·$0.20·$20이다. 새 Terra는 이 세 항목에서 각각 4분의 1이다. 캐시를 새로 쓰는 요금과 도구 비용 등은 별도 조건이므로 모든 청구 항목이 같은 비율이라는 뜻은 아니다.
 
-OpenAI가 발표한 Agents’ Last Exam의 최대 추론 강도 결과에서 ‘Opus보다 약 9배 낮은 비용’은 특정 컴퓨터 사용 평가의 작업당 비용이지 Sol과의 토큰 가격 차이 또는 모든 코딩 절감률이 아니다. OpenAI의 Terminal-Bench 4 평가에서는 5.6 Terra 21.5%에서 6.1 Terra 50.3%로 개선됐지만, 가장 어려운 코딩에는 Sol이나 Astra를 권한다. Terra Fast는 Standard의 두 배 단가라 Sol Standard와 단가가 같아지고, 추가 크레딧 요율만으로 구독에 포함된 사용량이 정확히 두 배라고 계산할 수는 없다. 사람 검토 시간과 지연 시간이 더 중요한 작업이라면 이 비용표와 다른 경로를 선택할 수 있다.
+[OpenAI가 발표한 Agents’ Last Exam](https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/)의 최대 추론 강도 결과에서 ‘Opus보다 약 9배 낮은 비용’은 특정 컴퓨터 사용 평가의 작업당 비용이지 Sol과의 토큰 가격 차이 또는 모든 코딩 절감률이 아니다. OpenAI의 Terminal-Bench 4 평가에서는 5.6 Terra 21.5%에서 6.1 Terra 50.3%로 개선됐지만, 가장 어려운 코딩에는 Sol이나 Astra를 권한다. Terra Fast는 Standard의 두 배 단가라 Sol Standard와 단가가 같아지고, [추가 크레딧 요율](https://learn.chatgpt.com/docs/pricing)만으로 구독에 포함된 사용량이 정확히 두 배라고 계산할 수는 없다. 사람 검토 시간과 지연 시간이 더 중요한 작업이라면 이 비용표와 다른 경로를 선택할 수 있다.
 
 평가 종류도 나눠 봐야 한다. OpenAI는 별도의 Terminal-Bench-Science 0.1에서는 Terra가 Sol보다 높은 점수를 낮은 비용으로 냈다고 발표했다. 어려운 터미널 작업의 평균 결과와 과학 작업의 결과를 합쳐 하나의 순위로 만들면 이 차이를 놓친다.
 
