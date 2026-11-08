@@ -1,0 +1,42 @@
+---
+layout: default
+title: 같은 주제, 여섯 가지 작성 결과
+description: Terra와 Sol, 세 가지 글쓰기 방식으로 작성한 18편을 읽고 비교한다.
+permalink: /writing-lab/matrix/
+noindex: true
+sitemap: false
+---
+<link rel="stylesheet" href="{{ '/assets/css/writing-matrix.css' | relative_url }}">
+<section class="matrix-intro">
+<p class="eyebrow">WRITING COMPARISON</p>
+<h1>같은 주제, 여섯 가지 작성 결과</h1>
+<p>세 주제를 Terra와 Sol, 세 가지 작성 방식으로 풀었다. 각 글은 끝까지 읽을 수 있는 별도 완성본이다. 두 글을 나란히 놓고 설명의 흐름, 사례, 판단 근거를 비교해 볼 수 있다.</p>
+<p class="meta">모델 이름은 작성 요청 설정이다. 조합마다 한 번씩 작성한 결과이며 모델 성능 순위를 뜻하지 않는다. 스킬 없음은 추가 글쓰기 지침을 적용하지 않았다는 뜻이다.</p>
+</section>
+<section aria-labelledby="compare-title">
+<h2 id="compare-title">두 글 나란히 읽기</h2>
+<div class="matrix-controls">
+<label for="matrix-topic">주제<select id="matrix-topic"><option value="gpt-61-terra-sol-cost">Terra·Sol 비용</option><option value="deepseek-model-evaluation">DeepSeek 모델 평가</option><option value="agent-memory-handoff">에이전트 기억과 인수인계</option></select></label>
+<label for="matrix-left">왼쪽<select id="matrix-left"></select></label>
+<label for="matrix-right">오른쪽<select id="matrix-right"></select></label>
+</div>
+<p id="matrix-status" class="meta" role="status" aria-live="polite"></p>
+<div class="matrix-columns" id="matrix-columns" hidden>
+<section><h3 id="left-heading">왼쪽 글</h3><a id="left-link" href="#">전체 화면으로 읽기</a><iframe id="left-frame" title="왼쪽 비교 글" loading="lazy"></iframe></section>
+<section><h3 id="right-heading">오른쪽 글</h3><a id="right-link" href="#">전체 화면으로 읽기</a><iframe id="right-frame" title="오른쪽 비교 글" loading="lazy"></iframe></section>
+</div>
+<noscript><p>두 글 선택 기능에는 JavaScript가 필요합니다. 아래 목록에서 18편을 각각 읽을 수 있습니다.</p></noscript>
+</section>
+<section aria-labelledby="all-articles"><h2 id="all-articles">18편 전체 목록</h2>
+<table class="matrix-table"><caption>작성 모델과 스킬 조합별 완성 글</caption><thead><tr><th scope="col">조합</th><th scope="col">작성 요청 모델</th><th scope="col">작성 방식</th><th scope="col">Terra·Sol 비용</th><th scope="col">DeepSeek 평가</th><th scope="col">기억과 인수인계</th></tr></thead><tbody>
+<tr><th scope="row">T0</th><td>GPT-6.1 Terra</td><td>추가 스킬 없음</td><td><a href="/writing-lab/matrix/t0/gpt-61-terra-sol-cost/">비용 글 읽기</a></td><td><a href="/writing-lab/matrix/t0/deepseek-model-evaluation/">평가 글 읽기</a></td><td><a href="/writing-lab/matrix/t0/agent-memory-handoff/">기억 설계 글 읽기</a></td></tr>
+<tr><th scope="row">T1</th><td>GPT-6.1 Terra</td><td>기존 한국어 스킬</td><td><a href="/writing-lab/matrix/t1/gpt-61-terra-sol-cost/">비용 글 읽기</a></td><td><a href="/writing-lab/matrix/t1/deepseek-model-evaluation/">평가 글 읽기</a></td><td><a href="/writing-lab/matrix/t1/agent-memory-handoff/">기억 설계 글 읽기</a></td></tr>
+<tr><th scope="row">T2</th><td>GPT-6.1 Terra</td><td>기존 스킬 + 추가 편집</td><td><a href="/writing-lab/matrix/t2/gpt-61-terra-sol-cost/">비용 글 읽기</a></td><td><a href="/writing-lab/matrix/t2/deepseek-model-evaluation/">평가 글 읽기</a></td><td><a href="/writing-lab/matrix/t2/agent-memory-handoff/">기억 설계 글 읽기</a></td></tr>
+<tr><th scope="row">S0</th><td>GPT-6.1 Sol</td><td>추가 스킬 없음</td><td><a href="/writing-lab/matrix/s0/gpt-61-terra-sol-cost/">비용 글 읽기</a></td><td><a href="/writing-lab/matrix/s0/deepseek-model-evaluation/">평가 글 읽기</a></td><td><a href="/writing-lab/matrix/s0/agent-memory-handoff/">기억 설계 글 읽기</a></td></tr>
+<tr><th scope="row">S1</th><td>GPT-6.1 Sol</td><td>기존 한국어 스킬</td><td><a href="/writing-lab/matrix/s1/gpt-61-terra-sol-cost/">비용 글 읽기</a></td><td><a href="/writing-lab/matrix/s1/deepseek-model-evaluation/">평가 글 읽기</a></td><td><a href="/writing-lab/matrix/s1/agent-memory-handoff/">기억 설계 글 읽기</a></td></tr>
+<tr><th scope="row">S2</th><td>GPT-6.1 Sol</td><td>기존 스킬 + 추가 편집</td><td><a href="/writing-lab/matrix/s2/gpt-61-terra-sol-cost/">비용 글 읽기</a></td><td><a href="/writing-lab/matrix/s2/deepseek-model-evaluation/">평가 글 읽기</a></td><td><a href="/writing-lab/matrix/s2/agent-memory-handoff/">기억 설계 글 읽기</a></td></tr>
+</tbody></table>
+<p>기존 방식은 한국어 문체·문법·일관성 교정이다. 추가 편집은 여기에 구체적인 사례와 비교 조건을 앞에 두는 구성 지침을 더했다. 핵심 자료와 그림은 같고, 글의 구성과 설명은 조합별로 작성했다.</p>
+<p><a href="/writing-lab/">이전 A/B 편집 비교</a> · <a href="/learn/">학습 서재</a></p>
+</section>
+<script src="{{ '/assets/js/writing-matrix.js' | relative_url }}" defer></script>
